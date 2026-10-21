@@ -1,0 +1,68 @@
+import { MarketTickerItem } from "@/types";
+
+export const marketTickerData: MarketTickerItem[] = [
+  {
+    symbol: "NIFTY 50",
+    name: "NSE Benchmark",
+    value: "24,852.15",
+    change: "+0.64%",
+    isPositive: true,
+    category: "Index",
+  },
+  {
+    symbol: "BANK NIFTY",
+    name: "Banking Index",
+    value: "52,430.80",
+    change: "+0.48%",
+    isPositive: true,
+    category: "Index",
+  },
+  {
+    symbol: "FINNIFTY",
+    name: "Financial Services",
+    value: "23,612.40",
+    change: "-0.15%",
+    isPositive: false,
+    category: "Index",
+  },
+  {
+    symbol: "SENSEX",
+    name: "BSE Benchmark",
+    value: "81,720.50",
+    change: "+0.55%",
+    isPositive: true,
+    category: "Index",
+  },
+  {
+    symbol: "MCX GOLD",
+    name: "Gold 10g Future",
+    value: "₹76,420",
+    change: "+0.32%",
+    isPositive: true,
+    category: "Commodity",
+  },
+  {
+    symbol: "CRUDE OIL",
+    name: "MCX Crude 100 BBL",
+    value: "₹6,140",
+    change: "-0.82%",
+    isPositive: false,
+    category: "Commodity",
+  },
+  {
+    symbol: "NIFTY IT",
+    name: "IT Sectoral Index",
+    value: "42,880.10",
+    change: "+1.12%",
+    isPositive: true,
+    category: "Index",
+  },
+  {
+    symbol: "SILVER MIC",
+    name: "MCX Silver 1kg",
+    value: "₹91,350",
+    change: "+0.71%",
+    isPositive: true,
+    category: "Commodity",
+  },
+];
