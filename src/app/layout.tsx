@@ -64,8 +64,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={plusJakartaSans.variable}>
       <body className="min-h-screen flex flex-col font-sans bg-white text-slate-900 antialiased selection:bg-sky-100 selection:text-sky-900">
-        <TopBar />
-        <Navbar />
+        <div className="sticky top-0 z-40 w-full">
+          <TopBar />
+          <Navbar />
+        </div>
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
