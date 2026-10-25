@@ -1,5 +1,4 @@
 import { siteConfig } from "@/data/site";
-import { marketTickerData } from "@/data/ticker";
 import { researchSegmentsData } from "@/data/segments";
 import { methodologySteps } from "@/data/methodology";
 import { whyUsFeatures } from "@/data/features";
@@ -7,7 +6,7 @@ import { pricingPlansData, plansComplianceNote } from "@/data/plans";
 import { faqsData } from "@/data/faqs";
 
 import { Hero } from "@/components/sections/Hero";
-import { TickerSection } from "@/components/sections/TickerSection";
+import { LiveTickerSection } from "@/components/sections/LiveTickerSection";
 import { SegmentsSection } from "@/components/sections/SegmentsSection";
 import { MethodSection } from "@/components/sections/MethodSection";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
@@ -28,7 +27,7 @@ export default function HomePage() {
       />
 
       {/* 2. Live Market Scrolling Ticker */}
-      <TickerSection items={marketTickerData} />
+      <LiveTickerSection />
 
       {/* 3. Research Segments (Options, Futures, Cash, MCX, Intraday, Positional) */}
       <SegmentsSection segments={researchSegmentsData} />
