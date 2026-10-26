@@ -5,7 +5,7 @@ export const whyUsFeatures: FeatureItem[] = [
     id: "sebi-registered",
     title: "SEBI Registered & Regulated",
     description:
-      "Fully compliant Research Analyst (Reg. No. ooooooooooo) governed by SEBI (Research Analysts) Regulations, 2014. No unverified third-party tipping.",
+      "Fully compliant Research Analyst (Reg. No. INH000031204) governed by SEBI (Research Analysts) Regulations, 2014. No unverified third-party tipping.",
     iconName: "ShieldCheck",
     metricBadge: "100% Compliant",
   },

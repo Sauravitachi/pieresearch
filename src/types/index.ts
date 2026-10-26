@@ -1,9 +1,13 @@
 export interface SiteConfig {
   brandName: string;
   legalEntityName: string;
+  /** Name of the individual Research Analyst holding the SEBI registration. */
+  analystName: string;
   tagline: string;
   subTagline: string;
   sebiRegNo: string;
+  /** Registration validity period as published by SEBI. */
+  sebiValidity: string;
   nismCertNo: string;
   phone: string;
   displayPhone: string;

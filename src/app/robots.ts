@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://brandname.in/sitemap.xml",
+    sitemap: "https://thecometresearch.in/sitemap.xml",
   };
 }

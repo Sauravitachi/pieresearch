@@ -2,32 +2,32 @@ import { SiteConfig } from "@/types";
 
 /**
  * Global Site Configuration & SEBI Compliance Information
+ * Registration details mirror the SEBI "Recognized Intermediaries" public record.
  * Edit brand details, contacts, and registration details here.
  */
 export const siteConfig: SiteConfig = {
-  // Brand name: Replace with your actual brand name if needed
-  brandName: "[BRAND NAME]",
-  legalEntityName: "[BRAND NAME] RESEARCH SERVICES LLP",
+  brandName: "The Comet Research",
+  // INH-series registrations are granted to an individual, not a company.
+  legalEntityName: "Akshay Kumar, Proprietor — The Comet Research",
+  analystName: "Akshay Kumar",
   tagline: "Disciplined, Data-Backed Market Research for Serious Traders",
   subTagline:
     "SEBI Registered Research Analyst providing objective technical & quantitative trade set-ups with pre-defined risk parameters.",
-  sebiRegNo: "ooooooooooo",
+  sebiRegNo: "INH000031204",
+  sebiValidity: "Oct 23, 2026 – Perpetual",
   nismCertNo: "NISM-Series-XV: Research Analyst Certified",
-  phone: "+91 0000000000",
-  displayPhone: "+91 0000000000",
-  email: "research@brandname.in",
-  complianceEmail: "compliance@brandname.in",
+  phone: "+91 80531 61410",
+  displayPhone: "+91 80531 61410",
+  email: "akshaykumar20121999@gmail.com",
+  complianceEmail: "akshaykumar20121999@gmail.com",
   supportHours: "Mon – Fri: 08:30 AM – 05:30 PM IST",
   registeredOffice:
-    "Suite 402, Financial Tech Tower, BKC, Bandra East, Mumbai, Maharashtra - 400051",
+    "Code Brew, Plot No. 1-36, Sector 83 Alpha, Mohali, SAS Nagar, Punjab – 140308",
   socials: {
-    telegram: "https://t.me/brandname_research",
-    whatsapp: "https://wa.me/919876543210",
-    twitter: "https://x.com/brandname_ra",
-    linkedin: "https://linkedin.com/company/brandname-research",
+    whatsapp: "https://wa.me/918053161410",
   },
   trustStats: [
-    { label: "SEBI Reg. Analyst", value: "Active RA", helper: "ooooooooooo" },
+    { label: "SEBI Reg. Analyst", value: "Active RA", helper: "INH000031204" },
     { label: "Rule-Based Setups", value: "100%", helper: "Systematic Models" },
     { label: "Min Risk-to-Reward", value: "1 : 2.5+", helper: "Predefined Invalidation" },
     { label: "Profit Sharing", value: "0%", helper: "Strict SEBI Code" },

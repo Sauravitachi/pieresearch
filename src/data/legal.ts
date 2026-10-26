@@ -11,7 +11,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
       {
         heading: "1. Regulatory Status & Scope of Services",
         content: [
-          "[BRAND NAME] is a SEBI Registered Research Analyst holding Registration No. ooooooooooo.",
+          "The Comet Research is the brand under which Akshay Kumar, a SEBI Registered Research Analyst holding Registration No. INH000031204, publishes research.",
           "Our services are strictly confined to the provision of independent market research reports, technical and quantitative price-action setups, and educational market commentary.",
           "We do not provide portfolio management, discretionary trading, account handling, or assured/guaranteed return products.",
         ],
@@ -163,7 +163,7 @@ export const legalDocuments: Record<string, LegalDocument> = {
       {
         heading: "Level 1: Internal Compliance Redressal",
         content: [
-          "Clients may lodge any service grievance or discrepancy by writing directly to our designated compliance desk: compliance@brandname.in or calling +91 0000000000 during market hours.",
+          "Clients may lodge any service grievance or discrepancy by writing directly to our designated compliance desk: akshaykumar20121999@gmail.com or calling +91 80531 61410 during market hours.",
           "All grievances received are officially ticketed and addressed within 7 to 15 working days with a written resolution.",
         ],
       },

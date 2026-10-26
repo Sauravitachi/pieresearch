@@ -132,6 +132,11 @@ export const Footer: React.FC = () => {
             Mandatory Regulatory Disclosures:
           </p>
           <p>
+            <strong>Research Analyst:</strong> {siteConfig.analystName} • SEBI Reg. No.{" "}
+            {siteConfig.sebiRegNo} • Validity: {siteConfig.sebiValidity} •{" "}
+            {siteConfig.nismCertNo}
+          </p>
+          <p>
             <strong>1. Standard Market Risk Warning:</strong> {siteConfig.complianceDisclaimers.standardWarning}
           </p>
           <p>

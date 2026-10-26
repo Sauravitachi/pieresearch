@@ -5,7 +5,7 @@ export const faqsData: FaqItem[] = [
     id: "sebi-registration",
     question: "Are you a SEBI Registered Research Analyst?",
     answer:
-      "Yes. We are registered with the Securities and Exchange Board of India (SEBI) as a Research Analyst under Registration Number ooooooooooo, in strict accordance with the SEBI (Research Analysts) Regulations, 2014. You can verify our credential directly on the official SEBI website under Recognized Intermediaries.",
+      "Yes. We are registered with the Securities and Exchange Board of India (SEBI) as a Research Analyst under Registration Number INH000031204, in strict accordance with the SEBI (Research Analysts) Regulations, 2014. You can verify our credential directly on the official SEBI website under Recognized Intermediaries.",
     category: "Compliance",
   },
   {

@@ -12,7 +12,7 @@ interface CtaSectionProps {
 export const CtaSection: React.FC<CtaSectionProps> = ({
   title = "Ready to Invest with Independent Quantitative Rigor?",
   description = "Join disciplined investors and market participants who prioritize valuation discipline, structured risk parameters, and unbiased equity research.",
-  brandName = "[BRAND NAME]",
+  brandName = "The Comet Research",
 }) => {
   return (
     <section className="py-16 lg:py-24 bg-white">

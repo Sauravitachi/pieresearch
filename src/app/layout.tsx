@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://brandname.in",
+    url: "https://thecometresearch.in",
     siteName: siteConfig.brandName,
     title: `${siteConfig.brandName} | SEBI Registered Research Analyst`,
     description: siteConfig.subTagline,
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.brandName} | SEBI Registered Research Analyst`,
     description: siteConfig.subTagline,
-    creator: "@brandname_ra",
+    creator: "@thecometresearch",
   },
 };
 
