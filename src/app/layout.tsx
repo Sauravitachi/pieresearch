@@ -20,6 +20,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://thecometresearch.com"),
   title: {
     default: `${siteConfig.brandName} | SEBI Registered Research Analyst`,
     template: `%s | ${siteConfig.brandName}`,
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://thecometresearch.in",
+    url: "https://thecometresearch.com",
     siteName: siteConfig.brandName,
     title: `${siteConfig.brandName} | SEBI Registered Research Analyst`,
     description: siteConfig.subTagline,

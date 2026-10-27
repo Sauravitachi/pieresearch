@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { legalDocuments } from "@/data/legal";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://thecometresearch.in";
+  const baseUrl = "https://thecometresearch.com";
 
   const legalRoutes = Object.keys(legalDocuments).map((slug) => ({
     url: `${baseUrl}/${slug}`,
