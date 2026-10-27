@@ -1,29 +1,56 @@
 import React from "react";
 
 /**
- * Brand backdrop for the hero: a comet sweeping across the top of the section.
- * Drawn as inline SVG so the tail gradients stay crisp at any width, and kept
- * in the upper-right so it never sits behind the headline text.
+ * Brand backdrop for the hero: a comet emerging from a pocket of deep space in
+ * the top-right corner and sweeping left into the light. Drawn as inline SVG so
+ * the tails stay crisp at any width, and faded out above the headline so it
+ * never costs text contrast.
  */
 
-/** Fixed positions keep server and client markup identical. */
-const STARS: { cx: number; cy: number; r: number; o: number }[] = [
-  { cx: 180, cy: 70, r: 1.4, o: 0.35 },
-  { cx: 320, cy: 140, r: 1, o: 0.25 },
-  { cx: 410, cy: 48, r: 1.6, o: 0.3 },
-  { cx: 560, cy: 108, r: 1, o: 0.22 },
-  { cx: 690, cy: 56, r: 1.3, o: 0.3 },
-  { cx: 815, cy: 132, r: 1, o: 0.2 },
-  { cx: 940, cy: 44, r: 1.5, o: 0.32 },
-  { cx: 1010, cy: 190, r: 1, o: 0.22 },
-  { cx: 1120, cy: 236, r: 1.3, o: 0.26 },
-  { cx: 1248, cy: 86, r: 1, o: 0.24 },
-  { cx: 1330, cy: 196, r: 1.5, o: 0.3 },
-  { cx: 1392, cy: 102, r: 1, o: 0.2 },
-  { cx: 96, cy: 206, r: 1.2, o: 0.22 },
-  { cx: 238, cy: 262, r: 1, o: 0.18 },
-  { cx: 1196, cy: 32, r: 1.2, o: 0.26 },
-];
+const SKY = { cx: 1300, cy: -15, rx: 520, ry: 262 };
+
+/** Deterministic PRNG so server and client render identical markup. */
+function makeRandom(seed: number): () => number {
+  let state = seed;
+  return () => {
+    state = (state * 1664525 + 1013904223) % 4294967296;
+    return state / 4294967296;
+  };
+}
+
+interface Star {
+  cx: number;
+  cy: number;
+  r: number;
+  o: number;
+}
+
+/** Stars only exist where the sky is dark, so fade them with the same falloff. */
+function buildStars(count: number): Star[] {
+  const random = makeRandom(20261027);
+  const stars: Star[] = [];
+
+  while (stars.length < count) {
+    const cx = random() * 1100 + 560;
+    const cy = random() * 300 - 80;
+    const dx = (cx - SKY.cx) / SKY.rx;
+    const dy = (cy - SKY.cy) / SKY.ry;
+    const falloff = 1 - Math.sqrt(dx * dx + dy * dy);
+
+    if (falloff <= 0.08) continue;
+
+    stars.push({
+      cx: Math.round(cx * 10) / 10,
+      cy: Math.round(cy * 10) / 10,
+      r: Math.round((0.7 + random() * 1.5) * 100) / 100,
+      o: Math.round(Math.min(1, falloff * 1.5 * (0.5 + random() * 0.8)) * 100) / 100,
+    });
+  }
+
+  return stars;
+}
+
+const STARS = buildStars(85);
 
 export const CometBackdrop: React.FC = () => (
   <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -34,45 +61,48 @@ export const CometBackdrop: React.FC = () => (
       fill="none"
     >
       <defs>
-        {/* Tail brightest at the nucleus, dissolving along its length */}
-        <linearGradient id="comet-ion" gradientUnits="userSpaceOnUse" x1="1150" y1="96" x2="-60" y2="48">
-          <stop offset="0" stopColor="#0284c7" stopOpacity="0.5" />
-          <stop offset="0.3" stopColor="#0ea5e9" stopOpacity="0.2" />
-          <stop offset="1" stopColor="#7dd3fc" stopOpacity="0" />
+        {/* The pocket of night sky the comet travels out of */}
+        <radialGradient id="comet-night" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#040917" stopOpacity="0.9" />
+          <stop offset="0.5" stopColor="#0a1f3a" stopOpacity="0.62" />
+          <stop offset="0.8" stopColor="#10325c" stopOpacity="0.2" />
+          <stop offset="1" stopColor="#0f2d52" stopOpacity="0" />
+        </radialGradient>
+
+        {/* Broad dust fan: bright at the nucleus, opening out behind it */}
+        <linearGradient id="comet-dust" gradientUnits="userSpaceOnUse" x1="1250" y1="92" x2="-40" y2="30">
+          <stop offset="0" stopColor="#ffffff" stopOpacity="0.72" />
+          <stop offset="0.22" stopColor="#e0f2fe" stopOpacity="0.34" />
+          <stop offset="0.62" stopColor="#bae6fd" stopOpacity="0.1" />
+          <stop offset="1" stopColor="#bae6fd" stopOpacity="0" />
         </linearGradient>
 
-        <linearGradient id="comet-dust" gradientUnits="userSpaceOnUse" x1="1148" y1="112" x2="40" y2="210">
-          <stop offset="0" stopColor="#38bdf8" stopOpacity="0.24" />
-          <stop offset="0.45" stopColor="#67e8f9" stopOpacity="0.08" />
-          <stop offset="1" stopColor="#a5f3fc" stopOpacity="0" />
+        {/* Narrow ion tail, bluer and straighter than the dust */}
+        <linearGradient id="comet-ion" gradientUnits="userSpaceOnUse" x1="1250" y1="100" x2="-60" y2="120">
+          <stop offset="0" stopColor="#7dd3fc" stopOpacity="0.85" />
+          <stop offset="0.3" stopColor="#38bdf8" stopOpacity="0.4" />
+          <stop offset="1" stopColor="#38bdf8" stopOpacity="0" />
         </linearGradient>
 
         <radialGradient id="comet-halo" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#ffffff" stopOpacity="0.95" />
-          <stop offset="0.25" stopColor="#7dd3fc" stopOpacity="0.55" />
-          <stop offset="0.6" stopColor="#38bdf8" stopOpacity="0.18" />
+          <stop offset="0" stopColor="#ffffff" stopOpacity="1" />
+          <stop offset="0.18" stopColor="#f0f9ff" stopOpacity="0.9" />
+          <stop offset="0.42" stopColor="#7dd3fc" stopOpacity="0.45" />
           <stop offset="1" stopColor="#38bdf8" stopOpacity="0" />
         </radialGradient>
 
-        {/* Wash that lifts the whole upper band without a hard edge */}
-        <radialGradient id="comet-sky" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#0284c7" stopOpacity="0.055" />
-          <stop offset="1" stopColor="#0284c7" stopOpacity="0" />
-        </radialGradient>
-
-        <filter id="comet-soft" filterUnits="userSpaceOnUse" x="-300" y="-300" width="2040" height="1400">
-          <feGaussianBlur stdDeviation="6" />
+        <filter id="comet-soft" filterUnits="userSpaceOnUse" x="-400" y="-400" width="2240" height="1600">
+          <feGaussianBlur stdDeviation="7" />
+        </filter>
+        <filter id="comet-wide" filterUnits="userSpaceOnUse" x="-400" y="-400" width="2240" height="1600">
+          <feGaussianBlur stdDeviation="18" />
         </filter>
 
-        <filter id="comet-wide" filterUnits="userSpaceOnUse" x="-300" y="-300" width="2040" height="1400">
-          <feGaussianBlur stdDeviation="16" />
-        </filter>
-
-        {/* Everything fades out before it reaches the headline */}
+        {/* Everything dissolves well above the headline */}
         <linearGradient id="comet-fade" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#fff" stopOpacity="1" />
-          <stop offset="0.3" stopColor="#fff" stopOpacity="1" />
-          <stop offset="0.72" stopColor="#fff" stopOpacity="0" />
+          <stop offset="0.1" stopColor="#fff" stopOpacity="1" />
+          <stop offset="0.3" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
         <mask id="comet-mask">
           <rect width="1440" height="800" fill="url(#comet-fade)" />
@@ -80,46 +110,36 @@ export const CometBackdrop: React.FC = () => (
       </defs>
 
       <g mask="url(#comet-mask)">
-        <ellipse cx="990" cy="20" rx="620" ry="250" fill="url(#comet-sky)" />
+        {/*
+          Narrow viewports crop to the middle of the artwork, which would drag
+          the night sky across the headline, so the dark field and its stars are
+          desktop-only, from the width where the nucleus itself stays on screen.
+        */}
+        <g className="hidden xl:block">
+          <ellipse cx={SKY.cx} cy={SKY.cy} rx={SKY.rx} ry={SKY.ry} fill="url(#comet-night)" />
 
-        {STARS.map((star, idx) => (
-          <circle
-            key={idx}
-            cx={star.cx}
-            cy={star.cy}
-            r={star.r}
-            fill="#0f172a"
-            opacity={star.o}
-          />
-        ))}
+          {STARS.map((star, idx) => (
+            <circle key={idx} cx={star.cx} cy={star.cy} r={star.r} fill="#ffffff" opacity={star.o} />
+          ))}
+        </g>
 
-        {/* Dust tail — broader, curving away below the ion tail */}
+        {/* Dust fan */}
         <path
-          d="M1148 112C980 150 640 196 40 212L24 164C600 150 950 118 1146 90Z"
+          d="M1252 86C1040 64 600 34 -40 -30L-60 92C560 116 1040 140 1250 120Z"
           fill="url(#comet-dust)"
           filter="url(#comet-wide)"
         />
 
-        {/* Ion tail — a narrow streak that widens with distance from the head */}
+        {/* Ion tail */}
         <path
-          d="M1150 92C880 86 440 68 -60 18L-70 66C430 110 880 104 1150 102Z"
+          d="M1250 100C990 112 520 142 -60 186L-66 218C520 202 990 156 1252 126Z"
           fill="url(#comet-ion)"
           filter="url(#comet-soft)"
         />
 
-        {/* Bright core line down the ion tail — this is what reads as motion */}
-        <path
-          d="M1150 97C870 92 420 76 -60 38"
-          stroke="url(#comet-ion)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          filter="url(#comet-soft)"
-        />
-
         {/* Nucleus */}
-        <circle cx="1150" cy="96" r="74" fill="url(#comet-halo)" />
-        <circle cx="1150" cy="96" r="6" fill="#ffffff" />
-        <circle cx="1150" cy="96" r="2.5" fill="#e0f2fe" />
+        <circle cx="1250" cy="104" r="88" fill="url(#comet-halo)" />
+        <circle cx="1250" cy="104" r="8" fill="#ffffff" />
       </g>
     </svg>
   </div>
