@@ -15,8 +15,8 @@ interface Sky {
 }
 
 /** The lead comet sits in the right pocket; a smaller, further one trails left. */
-const SKY_RIGHT: Sky = { cx: 1300, cy: -15, rx: 520, ry: 262 };
-const SKY_LEFT: Sky = { cx: 90, cy: -35, rx: 440, ry: 225 };
+const SKY_RIGHT: Sky = { cx: 1300, cy: 5, rx: 520, ry: 298 };
+const SKY_LEFT: Sky = { cx: 90, cy: -12, rx: 440, ry: 258 };
 
 /** Deterministic PRNG so server and client render identical markup. */
 function makeRandom(seed: number): () => number {
@@ -121,11 +121,21 @@ export const CometBackdrop: React.FC = () => (
           <feGaussianBlur stdDeviation="18" />
         </filter>
 
-        {/* Everything dissolves well above the headline */}
+        {/* A pale streak for the far comet, which crosses light ground */}
+        <linearGradient id="comet-ion-pale" gradientUnits="userSpaceOnUse" x1="430" y1="516" x2="-240" y2="556">
+          <stop offset="0" stopColor="#38bdf8" stopOpacity="0.45" />
+          <stop offset="0.35" stopColor="#38bdf8" stopOpacity="0.2" />
+          <stop offset="1" stopColor="#7dd3fc" stopOpacity="0" />
+        </linearGradient>
+
+        {/*
+          Carries the artwork down through the section rather than stopping in a
+          band at the top, while still thinning out before the stat cards.
+        */}
         <linearGradient id="comet-fade" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#fff" stopOpacity="1" />
-          <stop offset="0.1" stopColor="#fff" stopOpacity="1" />
-          <stop offset="0.3" stopColor="#fff" stopOpacity="0" />
+          <stop offset="0.34" stopColor="#fff" stopOpacity="1" />
+          <stop offset="0.82" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
         <mask id="comet-mask">
           <rect width="1440" height="800" fill="url(#comet-fade)" />
@@ -162,6 +172,21 @@ export const CometBackdrop: React.FC = () => (
             <circle cx="352" cy="62" r="52" fill="url(#comet-halo)" />
             <circle cx="352" cy="62" r="5" fill="#ffffff" />
           </g>
+        </g>
+
+        {/*
+          A third comet far down the left margin, clear of the centred text
+          column. No dark field here, so it is only a pale streak and a dim
+          nucleus — enough to carry the motif into the lower half.
+        */}
+        <g opacity="0.75">
+          <path
+            d="M430 516C330 524 150 540 -240 566L-243 590C150 582 330 552 432 532Z"
+            fill="url(#comet-ion-pale)"
+            filter="url(#comet-soft)"
+          />
+          <circle cx="432" cy="522" r="44" fill="url(#comet-halo)" opacity="0.55" />
+          <circle cx="432" cy="522" r="3.5" fill="#bae6fd" />
         </g>
 
         {/* Lead comet */}
