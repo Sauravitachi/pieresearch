@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertTriangle, Phone, ShieldCheck } from "lucide-react";
+import { AlertTriangle, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
 export const TopBar: React.FC = () => {
