@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, ShieldCheck, CheckCircle2, LineChart } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { CometBackdrop } from "@/components/ui/CometBackdrop";
 
 interface HeroProps {
   headline: string;
@@ -21,12 +22,8 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   return (
     <section className="relative isolate overflow-hidden bg-white">
-      {/* Layered backdrop: blueprint grid under a soft sky bloom */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-grid" />
-        <div className="absolute inset-x-0 -top-40 h-[32rem] bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,rgba(2,132,199,0.13),transparent_70%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white" />
-      </div>
+      {/* Brand backdrop: a comet sweeping across the top of the section */}
+      <CometBackdrop />
 
       <Container size="default">
         <div className="mx-auto flex max-w-4xl flex-col items-center py-16 text-center sm:py-20 lg:py-28">
