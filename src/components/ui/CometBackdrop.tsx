@@ -1,13 +1,22 @@
 import React from "react";
 
 /**
- * Brand backdrop for the hero: a comet emerging from a pocket of deep space in
- * the top-right corner and sweeping left into the light. Drawn as inline SVG so
+ * Brand backdrop for the hero: two comets crossing a pocket of deep space in
+ * the upper corners and sweeping left into the light. Drawn as inline SVG so
  * the tails stay crisp at any width, and faded out above the headline so it
  * never costs text contrast.
  */
 
-const SKY = { cx: 1300, cy: -15, rx: 520, ry: 262 };
+interface Sky {
+  cx: number;
+  cy: number;
+  rx: number;
+  ry: number;
+}
+
+/** The lead comet sits in the right pocket; a smaller, further one trails left. */
+const SKY_RIGHT: Sky = { cx: 1300, cy: -15, rx: 520, ry: 262 };
+const SKY_LEFT: Sky = { cx: 90, cy: -35, rx: 440, ry: 225 };
 
 /** Deterministic PRNG so server and client render identical markup. */
 function makeRandom(seed: number): () => number {
@@ -26,15 +35,15 @@ interface Star {
 }
 
 /** Stars only exist where the sky is dark, so fade them with the same falloff. */
-function buildStars(count: number): Star[] {
-  const random = makeRandom(20261027);
+function buildStars(sky: Sky, count: number, seed: number, xMin: number, xMax: number): Star[] {
+  const random = makeRandom(seed);
   const stars: Star[] = [];
 
   while (stars.length < count) {
-    const cx = random() * 1100 + 560;
+    const cx = xMin + random() * (xMax - xMin);
     const cy = random() * 300 - 80;
-    const dx = (cx - SKY.cx) / SKY.rx;
-    const dy = (cy - SKY.cy) / SKY.ry;
+    const dx = (cx - sky.cx) / sky.rx;
+    const dy = (cy - sky.cy) / sky.ry;
     const falloff = 1 - Math.sqrt(dx * dx + dy * dy);
 
     if (falloff <= 0.08) continue;
@@ -50,7 +59,8 @@ function buildStars(count: number): Star[] {
   return stars;
 }
 
-const STARS = buildStars(85);
+const STARS_RIGHT = buildStars(SKY_RIGHT, 85, 20261027, 560, 1660);
+const STARS_LEFT = buildStars(SKY_LEFT, 55, 7714203, -140, 560);
 
 export const CometBackdrop: React.FC = () => (
   <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -61,7 +71,7 @@ export const CometBackdrop: React.FC = () => (
       fill="none"
     >
       <defs>
-        {/* The pocket of night sky the comet travels out of */}
+        {/* The pocket of night sky the comets travel through */}
         <radialGradient id="comet-night" cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor="#040917" stopOpacity="0.9" />
           <stop offset="0.5" stopColor="#0a1f3a" stopOpacity="0.62" />
@@ -81,6 +91,19 @@ export const CometBackdrop: React.FC = () => (
         <linearGradient id="comet-ion" gradientUnits="userSpaceOnUse" x1="1250" y1="100" x2="-60" y2="120">
           <stop offset="0" stopColor="#7dd3fc" stopOpacity="0.85" />
           <stop offset="0.3" stopColor="#38bdf8" stopOpacity="0.4" />
+          <stop offset="1" stopColor="#38bdf8" stopOpacity="0" />
+        </linearGradient>
+
+        {/* The same two tails for the trailing comet, over its shorter run */}
+        <linearGradient id="comet-dust-far" gradientUnits="userSpaceOnUse" x1="352" y1="56" x2="-260" y2="20">
+          <stop offset="0" stopColor="#ffffff" stopOpacity="0.6" />
+          <stop offset="0.25" stopColor="#e0f2fe" stopOpacity="0.26" />
+          <stop offset="1" stopColor="#bae6fd" stopOpacity="0" />
+        </linearGradient>
+
+        <linearGradient id="comet-ion-far" gradientUnits="userSpaceOnUse" x1="352" y1="64" x2="-260" y2="96">
+          <stop offset="0" stopColor="#7dd3fc" stopOpacity="0.7" />
+          <stop offset="0.32" stopColor="#38bdf8" stopOpacity="0.3" />
           <stop offset="1" stopColor="#38bdf8" stopOpacity="0" />
         </linearGradient>
 
@@ -112,32 +135,46 @@ export const CometBackdrop: React.FC = () => (
       <g mask="url(#comet-mask)">
         {/*
           Narrow viewports crop to the middle of the artwork, which would drag
-          the night sky across the headline, so the dark field and its stars are
-          desktop-only, from the width where the nucleus itself stays on screen.
+          the night sky under the headline, so the dark fields and their stars
+          are desktop-only, from the width where the nuclei stay on screen. The
+          lead comet keeps its tails and nucleus at every width.
         */}
         <g className="hidden xl:block">
-          <ellipse cx={SKY.cx} cy={SKY.cy} rx={SKY.rx} ry={SKY.ry} fill="url(#comet-night)" />
+          <ellipse {...SKY_RIGHT} fill="url(#comet-night)" />
+          <ellipse {...SKY_LEFT} fill="url(#comet-night)" opacity="0.82" />
 
-          {STARS.map((star, idx) => (
+          {[...STARS_RIGHT, ...STARS_LEFT].map((star, idx) => (
             <circle key={idx} cx={star.cx} cy={star.cy} r={star.r} fill="#ffffff" opacity={star.o} />
           ))}
+
+          {/* Trailing comet — smaller and fainter, so it reads as further away */}
+          <g opacity="0.85">
+            <path
+              d="M354 44C250 30 60 12 -260 -22L-270 62C40 78 250 88 352 76Z"
+              fill="url(#comet-dust-far)"
+              filter="url(#comet-wide)"
+            />
+            <path
+              d="M352 64C244 72 80 88 -260 114L-264 138C80 128 244 100 354 82Z"
+              fill="url(#comet-ion-far)"
+              filter="url(#comet-soft)"
+            />
+            <circle cx="352" cy="62" r="52" fill="url(#comet-halo)" />
+            <circle cx="352" cy="62" r="5" fill="#ffffff" />
+          </g>
         </g>
 
-        {/* Dust fan */}
+        {/* Lead comet */}
         <path
           d="M1252 86C1040 64 600 34 -40 -30L-60 92C560 116 1040 140 1250 120Z"
           fill="url(#comet-dust)"
           filter="url(#comet-wide)"
         />
-
-        {/* Ion tail */}
         <path
           d="M1250 100C990 112 520 142 -60 186L-66 218C520 202 990 156 1252 126Z"
           fill="url(#comet-ion)"
           filter="url(#comet-soft)"
         />
-
-        {/* Nucleus */}
         <circle cx="1250" cy="104" r="88" fill="url(#comet-halo)" />
         <circle cx="1250" cy="104" r="8" fill="#ffffff" />
       </g>
