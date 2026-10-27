@@ -50,21 +50,21 @@ function buildStars(sky: Sky, count: number, seed: number, xMin: number, xMax: n
     const dy = (cy - sky.cy) / sky.ry;
     const falloff = 1 - Math.sqrt(dx * dx + dy * dy);
 
-    if (falloff <= 0.1) continue;
+    if (falloff <= 0.08) continue;
 
     stars.push({
       cx: Math.round(cx * 10) / 10,
       cy: Math.round(cy * 10) / 10,
-      r: Math.round((0.7 + random() * 1.4) * 100) / 100,
-      o: Math.round(Math.min(1, falloff * 1.6 * (0.45 + random() * 0.8)) * 100) / 100,
+      r: Math.round((0.7 + random() * 1.5) * 100) / 100,
+      o: Math.round(Math.min(1, falloff * 1.85 * (0.5 + random() * 0.8)) * 100) / 100,
     });
   }
 
   return stars;
 }
 
-const STARS_LEFT = buildStars(SKY_LEFT, 80, 7714203, -160, 420);
-const STARS_RIGHT = buildStars(SKY_RIGHT, 90, 20261027, 1010, 1660);
+const STARS_LEFT = buildStars(SKY_LEFT, 165, 7714203, -160, 440);
+const STARS_RIGHT = buildStars(SKY_RIGHT, 185, 20261027, 990, 1660);
 
 export const CometBackdrop: React.FC = () => (
   <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
