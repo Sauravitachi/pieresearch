@@ -164,11 +164,11 @@ export const InquirySection: React.FC = () => {
                   />
                   <span>
                     I confirm that I understand market risks, acknowledge that past performance is no guarantee of future returns, and agree to the{" "}
-                    <Link href="/terms-and-conditions" className="text-sky-600 underline font-semibold">
+                    <Link href="/terms-and-conditions" className="text-sky-700 underline font-semibold">
                       Terms of Service
                     </Link>{" "}
                     and{" "}
-                    <Link href="/disclaimer-and-disclosure" className="text-sky-600 underline font-semibold">
+                    <Link href="/disclaimer-and-disclosure" className="text-sky-700 underline font-semibold">
                       SEBI Disclosures
                     </Link>.
                   </span>

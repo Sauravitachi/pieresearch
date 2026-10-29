@@ -53,7 +53,7 @@ export const Accordion: React.FC<AccordionProps> = ({
               aria-expanded={isOpen}
               aria-controls={`accordion-panel-${item.id}`}
               onClick={() => toggleItem(item.id)}
-              className="flex w-full items-center justify-between p-5 text-left font-medium text-slate-900 hover:text-sky-600 focus-visible:bg-slate-50 transition-colors"
+              className="flex w-full items-center justify-between p-5 text-left font-medium text-slate-900 hover:text-sky-700 focus-visible:bg-slate-50 transition-colors"
             >
               <span className="text-base sm:text-lg pr-4 font-semibold text-slate-900">
                 {item.question}

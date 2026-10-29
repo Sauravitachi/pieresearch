@@ -38,7 +38,7 @@ export const TopBar: React.FC = () => {
                   {item.text}
                 </span>
               ) : (
-                <span className="text-amber-800/85 font-medium">{item.text}</span>
+                <span className="text-amber-800 font-medium">{item.text}</span>
               )}
               <span className="text-amber-400 font-bold">•</span>
             </div>
@@ -48,7 +48,7 @@ export const TopBar: React.FC = () => {
 
       {/* Contact on right for desktop */}
       <div className="hidden lg:flex relative z-10 h-full shrink-0 items-center gap-3 border-l border-amber-200 bg-amber-100 px-3.5 text-[11px] font-semibold text-amber-900">
-        <span className="text-amber-800/80">Analyst Desk:</span>
+        <span className="text-amber-800">Analyst Desk:</span>
         <a
           href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, "")}`}
           className="flex items-center gap-1 text-sky-800 hover:text-sky-950 transition-colors font-bold"

@@ -67,7 +67,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({
 
         {/* Features Checklist */}
         <div className="space-y-3 mb-8">
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
             Plan Inclusions
           </p>
           {plan.features.map((feature, idx) => (

@@ -102,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({
                     {stat.label}
                   </dt>
                   {stat.helper && (
-                    <p className="mt-1 text-[11px] font-medium text-slate-400">
+                    <p className="mt-1 text-[11px] font-medium text-slate-500">
                       {stat.helper}
                     </p>
                   )}

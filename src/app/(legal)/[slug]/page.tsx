@@ -54,7 +54,7 @@ export default async function LegalPage({ params }: LegalPageProps) {
         <div className="mb-8 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-sky-600 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-sky-700 transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             <span>Back to Home</span>

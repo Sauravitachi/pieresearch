@@ -60,7 +60,7 @@ export const SegmentCard: React.FC<SegmentCardProps> = ({ segment }) => {
         <h3 className="text-xl font-bold text-slate-900 mb-1.5">
           {segment.title}
         </h3>
-        <p className="text-xs font-semibold text-sky-600 mb-3">
+        <p className="text-xs font-semibold text-sky-700 mb-3">
           {segment.subtitle}
         </p>
         <p className="text-sm text-slate-600 mb-5 leading-relaxed">

@@ -25,7 +25,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header
+      <div
         className={cn(
           "relative w-full transition-all duration-300",
           isScrolled
@@ -44,7 +44,7 @@ export const Navbar: React.FC = () => {
                 <span className="text-lg font-black tracking-tight text-slate-900 leading-none">
                   {siteConfig.brandName}
                 </span>
-                <span className="text-[10px] font-bold text-sky-600 tracking-wider uppercase mt-1">
+                <span className="text-[10px] font-bold text-sky-700 tracking-wider uppercase mt-1">
                   SEBI Reg. RA
                 </span>
               </div>
@@ -62,7 +62,7 @@ export const Navbar: React.FC = () => {
                       onMouseLeave={() => setLegalDropdownOpen(false)}
                     >
                       <button
-                        className="flex items-center gap-1 text-sm font-semibold text-slate-700 hover:text-sky-600 transition-colors py-2"
+                        className="flex items-center gap-1 text-sm font-semibold text-slate-700 hover:text-sky-700 transition-colors py-2"
                         aria-expanded={legalDropdownOpen}
                       >
                         <span>{item.label}</span>
@@ -92,7 +92,7 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="text-sm font-semibold text-slate-700 hover:text-sky-600 transition-colors"
+                    className="text-sm font-semibold text-slate-700 hover:text-sky-700 transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -122,7 +122,7 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
         </Container>
-      </header>
+      </div>
 
       <MobileMenu
         isOpen={mobileMenuOpen}

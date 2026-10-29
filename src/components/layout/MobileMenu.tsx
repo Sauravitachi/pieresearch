@@ -57,7 +57,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                         key={child.label}
                         href={child.href}
                         onClick={onClose}
-                        className="block py-1.5 text-sm font-medium text-slate-600 hover:text-sky-600 transition-colors"
+                        className="block py-1.5 text-sm font-medium text-slate-600 hover:text-sky-700 transition-colors"
                       >
                         {child.label}
                       </Link>
@@ -72,7 +72,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                 key={item.label}
                 href={item.href}
                 onClick={onClose}
-                className="flex items-center justify-between py-2.5 text-base font-semibold text-slate-800 hover:text-sky-600 transition-colors border-b border-slate-100"
+                className="flex items-center justify-between py-2.5 text-base font-semibold text-slate-800 hover:text-sky-700 transition-colors border-b border-slate-100"
               >
                 <span>{item.label}</span>
                 <ChevronRight className="h-4 w-4 text-slate-400" />
@@ -96,7 +96,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
 
         {/* SEBI Compliance Footnote */}
         <div className="pt-6 border-t border-slate-200 text-xs text-slate-500 space-y-1.5">
-          <div className="flex items-center gap-1.5 text-sky-600 font-semibold">
+          <div className="flex items-center gap-1.5 text-sky-700 font-semibold">
             <Shield className="h-3.5 w-3.5" />
             <span>SEBI Reg. No. {siteConfig.sebiRegNo}</span>
           </div>

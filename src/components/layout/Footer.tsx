@@ -39,27 +39,27 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#segments" className="hover:text-sky-600 transition-colors">
+                <a href="#segments" className="hover:text-sky-700 transition-colors">
                   Research Segments
                 </a>
               </li>
               <li>
-                <a href="#methodology" className="hover:text-sky-600 transition-colors">
+                <a href="#methodology" className="hover:text-sky-700 transition-colors">
                   Methodology
                 </a>
               </li>
               <li>
-                <a href="#why-us" className="hover:text-sky-600 transition-colors">
+                <a href="#why-us" className="hover:text-sky-700 transition-colors">
                   Why Us & Compliance
                 </a>
               </li>
               <li>
-                <a href="#plans" className="hover:text-sky-600 transition-colors">
+                <a href="#plans" className="hover:text-sky-700 transition-colors">
                   Pricing Plans
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-sky-600 transition-colors">
+                <a href="#faq" className="hover:text-sky-700 transition-colors">
                   Frequently Asked Questions
                 </a>
               </li>
@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs">
               {legalLinks.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="hover:text-sky-600 transition-colors">
+                  <Link href={item.href} className="hover:text-sky-700 transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -84,7 +84,7 @@ export const Footer: React.FC = () => {
                   href="https://scores.sebi.gov.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-sky-600 transition-colors"
+                  className="hover:text-sky-700 transition-colors"
                 >
                   SEBI SCORES 2.0 ↗
                 </a>
@@ -94,7 +94,7 @@ export const Footer: React.FC = () => {
                   href="https://smartodr.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-sky-600 transition-colors"
+                  className="hover:text-sky-700 transition-colors"
                 >
                   SMART ODR Portal ↗
                 </a>
@@ -113,13 +113,13 @@ export const Footer: React.FC = () => {
             </p>
             <p className="flex items-center gap-2 text-slate-600">
               <Mail className="h-4 w-4 shrink-0 text-slate-400" />
-              <a href={`mailto:${siteConfig.complianceEmail}`} className="hover:text-sky-600">
+              <a href={`mailto:${siteConfig.complianceEmail}`} className="hover:text-sky-700">
                 {siteConfig.complianceEmail}
               </a>
             </p>
             <p className="flex items-center gap-2 text-slate-600">
               <Phone className="h-4 w-4 shrink-0 text-slate-400" />
-              <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, "")}`} className="hover:text-sky-600">
+              <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, "")}`} className="hover:text-sky-700">
                 {siteConfig.displayPhone}
               </a>
             </p>

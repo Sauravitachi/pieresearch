@@ -48,7 +48,7 @@ export const MethodSection: React.FC<MethodSectionProps> = ({ steps }) => {
                   <h3 className="text-lg font-bold text-slate-900 mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-xs font-semibold text-sky-600 mb-3">
+                  <p className="text-xs font-semibold text-sky-700 mb-3">
                     {item.subtitle}
                   </p>
                   <p className="text-xs text-slate-600 leading-relaxed mb-5">
