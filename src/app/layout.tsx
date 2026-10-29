@@ -63,7 +63,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={plusJakartaSans.variable}>
+    <html
+      lang="en"
+      className={plusJakartaSans.variable}
+      // globals.css sets scroll-behavior: smooth; this tells Next to suppress it
+      // during route transitions.
+      data-scroll-behavior="smooth"
+    >
       <body className="min-h-screen flex flex-col font-sans bg-white text-slate-900 antialiased selection:bg-sky-100 selection:text-sky-900">
         <header className="sticky top-0 z-40 w-full">
           <TopBar />
