@@ -47,7 +47,7 @@ export const Hero: React.FC<HeroProps> = ({
             </span>
             <br className="hidden sm:block" />{" "}
             Market Research
-            <span className="block text-slate-500">for Serious Traders</span>
+            <span className="block text-slate-900">for Serious Traders</span>
           </h1>
 
           {/* Subtext */}
