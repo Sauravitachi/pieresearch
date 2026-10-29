@@ -131,3 +131,13 @@ body {
 .animate-ticker-ltr:hover {
   animation-play-state: paused;
 }
+
+/*
+ * Pause state for both marquees. These animation classes are unlayered, so
+ * their `animation` shorthand would otherwise reset play-state back to running
+ * and beat a Tailwind utility from the utilities layer.
+ */
+.animate-ticker.is-paused,
+.animate-ticker-ltr.is-paused {
+  animation-play-state: paused;
+}

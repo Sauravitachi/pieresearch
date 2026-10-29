@@ -1,6 +1,7 @@
 import React from "react";
 import { AlertTriangle, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
+import { Marquee } from "@/components/ui/Marquee";
 
 export const TopBar: React.FC = () => {
   const tickerItems = [
@@ -25,8 +26,12 @@ export const TopBar: React.FC = () => {
       </div>
 
       {/* Continuous Marquee track moving from LEFT to RIGHT with seamless CSS fade mask */}
-      <div className="flex-1 overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_24px,black_calc(100%-24px),transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_24px,black_calc(100%-24px),transparent)]">
-        <div className="animate-ticker-ltr whitespace-nowrap">
+      <Marquee
+        trackClassName="animate-ticker-ltr whitespace-nowrap"
+        label="risk disclosure ticker"
+        className="flex-1 py-1 [mask-image:linear-gradient(to_right,transparent,black_24px,black_calc(100%-24px),transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_24px,black_calc(100%-24px),transparent)]"
+        buttonClassName="mx-1.5 border border-amber-200 bg-amber-100 text-amber-900 hover:bg-amber-200"
+      >
           {looped.map((item, idx) => (
             <div
               key={idx}
@@ -42,9 +47,8 @@ export const TopBar: React.FC = () => {
               )}
               <span className="text-amber-400 font-bold">•</span>
             </div>
-          ))}
-        </div>
-      </div>
+        ))}
+      </Marquee>
 
       {/* Contact on right for desktop */}
       <div className="hidden lg:flex relative z-10 h-full shrink-0 items-center gap-3 border-l border-amber-200 bg-amber-100 px-3.5 text-[11px] font-semibold text-amber-900">

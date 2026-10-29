@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { MarketTickerItem } from "@/types";
+import { Marquee } from "@/components/ui/Marquee";
 
 interface TickerSectionProps {
   items: MarketTickerItem[];
@@ -10,8 +11,13 @@ export const TickerSection: React.FC<TickerSectionProps> = ({ items }) => {
   const loopedItems = [...items, ...items];
 
   return (
-    <div className="w-full bg-slate-50 border-y border-slate-200 py-3 overflow-hidden select-none">
-      <div className="flex animate-ticker whitespace-nowrap">
+    <div className="flex w-full items-center border-y border-slate-200 bg-slate-50 py-3 select-none">
+      <Marquee
+        trackClassName="animate-ticker"
+        label="market ticker"
+        className="flex-1"
+        buttonClassName="mx-2 border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+      >
         {loopedItems.map((item, idx) => (
           <div
             key={`${item.symbol}-${idx}`}
@@ -27,15 +33,15 @@ export const TickerSection: React.FC<TickerSectionProps> = ({ items }) => {
               }`}
             >
               {item.isPositive ? (
-                <ArrowUpRight className="h-3.5 w-3.5 text-emerald-600" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-emerald-600" aria-hidden />
               ) : (
-                <ArrowDownRight className="h-3.5 w-3.5 text-red-500" />
+                <ArrowDownRight className="h-3.5 w-3.5 text-red-500" aria-hidden />
               )}
               {item.change}
             </span>
           </div>
         ))}
-      </div>
+      </Marquee>
     </div>
   );
 };

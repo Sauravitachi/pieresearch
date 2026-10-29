@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Headline */}
           <h1 className="mt-7 text-[2.5rem] font-extrabold leading-[1.06] tracking-[-0.035em] text-slate-900 sm:text-[3.25rem] lg:text-[3.75rem]">
             Disciplined,{" "}
-            <span className="whitespace-nowrap bg-gradient-to-r from-sky-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
+            <span className="whitespace-nowrap bg-gradient-to-r from-sky-700 via-sky-600 to-cyan-700 bg-clip-text text-transparent">
               Data&#8209;Backed
             </span>
             <br className="hidden sm:block" />{" "}
